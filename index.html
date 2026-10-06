@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>নবতরুণ সংস্থা - সামাজিক উন্নয়ন, মানবসেবা ও যুব উন্নয়ন</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            800: '#1B3B6F',
+                            900: '#0F2548',
+                        },
+                        emerald: {
+                            500: '#10B981',
+                            600: '#059669',
+                            700: '#047857',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Hind Siliguri', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Hind Siliguri', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 flex flex-col min-h-screen">
+
+    <header class="sticky top-0 z-50 bg-white shadow-md border-b border-emerald-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center space-x-3 space-x-reverse cursor-pointer" onclick="switchTab('home')">
+                    <img src="1000115982_2.png" alt="নবতরুণ লোগো" class="h-14 w-14 object-contain rounded-full shadow-sm border border-emerald-500/20" onerror="this.onerror=null; this.src='1000115982.png';">
+                    <div>
+                        <h1 class="text-2xl font-bold text-navy-800 leading-tight">নবতরুণ সংস্থা</h1>
+                        <p class="text-xs text-emerald-600 font-medium">সামাজিক উন্নয়ন • মানবসেবা • যুব উন্নয়ন</p>
+                    </div>
+                </div>
+
+                <nav class="hidden md:flex items-center space-x-6 space-x-reverse font-semibold text-slate-700">
+                    <button onclick="switchTab('home')" class="nav-btn hover:text-emerald-600 py-2 px-1 transition duration-150" id="nav-home">হোমপেজ</button>
+                    <button onclick="switchTab('apply')" class="nav-btn hover:text-emerald-600 py-2 px-1 transition duration-150" id="nav-apply">আবেদন জমা দিন</button>
+                    <button onclick="switchTab('track')" class="nav-btn hover:text-emerald-600 py-2 px-1 transition duration-150" id="nav-track">আব���দন ট্র্যাকিং</button>
+                    <button onclick="switchTab('notices')" class="nav-btn hover:text-emerald-600 py-2 px-1 transition duration-150" id="nav-notices">নোটিশ বোর্ড</button>
+                    <button onclick="switchTab('dashboard')" class="nav-btn hover:text-emerald-600 py-2 px-1 transition duration-150" id="nav-dashboard">অ্যাডমিন ড্যাশবোর্ড</button>
+                </nav>
+
+                <div class="flex items-center space-x-3 space-x-reverse">
+                    <div id="user-badge" class="hidden sm:flex items-center bg-slate-100 px-3 py-1.5 rounded-full border border-slate-200 text-xs">
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 mr-2"></span>
+                        <span id="current-user-name" class="font-semibold text-navy-800">দর্শনার্থী</span>
+                    </div>
+                    <button onclick="openLoginModal()" class="bg-navy-800 hover:bg-navy-900 text-white px-4 py-2 rounded-lg text-sm font-semibold shadow hover:shadow-lg transition flex items-center gap-2">
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                        <span id="login-btn-text">লগইন</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        
+        <section id="section-home" class="tab-content">
+            <div class="bg-gradient-to-r from-navy-900 via-navy-800 to-emerald-700 text-white py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+                <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
+                    <div class="md:w-3/5 text-center md:text-right space-y-4">
+                        <span class="inline-block px-3 py-1 bg-emerald-500/20 text-emerald-300 rounded-full text-xs font-semibold uppercase tracking-wider border border-emerald-400/30">
+                            একতাই শক্তি • সেবায় মুক্তি
+                        </span>
+                        <h2 class="text-3xl sm:text-5xl font-extrabold leading-tight">
+                            সামাজিক পরিবর্তন ও যুব সমাজের সুসংগঠিত বিকাশে <span class="text-emerald-400">নবতরুণ সংস্থা</span>
+                        </h2>
+                        <p class="text-slate-200 text-lg leading-relaxed max-w-2xl">
+                            আমরা তরুণ সমাজকে একত্র করে সামাজিক উন্নয়ন, অসহায়দের মানবসেবা এবং যুব ক্ষমতায়নের লক্ষ্যে নিরলস কাজ করে যাচ্ছি।
+                        </p>
+                        <div class="flex flex-wrap justify-center md:justify-start gap-4 pt-4">
+                            <button onclick="switchTab('apply')" class="bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-3 rounded-xl font-bold shadow-lg hover:shadow-emerald-500/30 transition flex items-center gap-2">
+                                <i class="fa-solid fa-paper-plane"></i> আবেদন করুন
+                            </button>
+                            <button onclick="switchTab('track')" class="bg-white/10 backdrop-blur-md hover:bg-white/20 text-white border border-white/30 px-6 py-3 rounded-xl font-bold transition flex items-center gap-2">
+                                <i class="fa-solid fa-magnifying-glass"></i> স্টেটাস চেক করুন
+                            </button>
+                        </div>
+                    </div>
+                    <div class="md:w-2/5 flex justify-center">
+                        <div class="relative">
+                            <div class="absolute -inset-1 bg-gradient-to-r from-emerald-500 to-navy-800 rounded-full blur opacity-50 animate-pulse"></div>
+                            <img src="1000115982_2.png" alt="নবতরুণ লোগো" class="relative w-64 h-64 sm:w-80 sm:h-80 object-contain bg-white rounded-full p-4 shadow-2xl border-4 border-white" onerror="this.onerror=null; this.src='1000115982.png';">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <div class="text-center mb-12">
+                    <h3 class="text-3xl font-bold text-navy-800">আমাদের কার্যক্রম ও পরিষেবা</h3>
+                    <p class="text-slate-600 mt-2">সংস্থার মূল স্তম্ভ ও সেবাসমূহ</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition border border-slate-100 flex flex-col items-center text-center group">
+                        <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center text-2xl mb-4 group-hover:bg-emerald-600 group-hover:text-white transition">
+                            <i class="fa-solid fa-hand-holding-heart"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-navy-800 mb-2">সামাজিক উন্নয়ন</h4>
+                        <p class="text-slate-600 text-sm">পরিবেশ রক্ষা, শিক্ষা সাহায্য, পরিষ্কার-পরিচ্ছন্নতা অভিযান এবং স্থানীয় অবকাঠামো উন্নয়নে সক্রিয় অংশগ্রহণ।</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition border border-slate-100 flex flex-col items-center text-center group">
+                        <div class="w-16 h-16 bg-navy-800/10 text-navy-800 rounded-2xl flex items-center justify-center text-2xl mb-4 group-hover:bg-navy-800 group-hover:text-white transition">
+                            <i class="fa-solid fa-users-gear"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-navy-800 mb-2">যুব উন্নয়ন</h4>
+                        <p class="text-slate-600 text-sm">তরুণদের কর্মসংস্থানমুখী প্রশিক্ষণ, ক্রীড়া ও সাংস্কৃতিক আয়োজন এবং নেতৃত্ব বিকাশে বিশেষ উদ্যোগ।</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition border border-slate-100 flex flex-col items-center text-center group">
+                        <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center text-2xl mb-4 group-hover:bg-emerald-600 group-hover:text-white transition">
+                            <i class="fa-solid fa-notes-medical"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-navy-800 mb-2">মানবসেবা</h4>
+                        <p class="text-slate-600 text-sm">জরুরি ত্রাণ বিতরণ, বিনামূল্যে রক্তদান শিবির, শীতার্তদের বস্ত্র বিতরণ ও অসুস্থদের চিকিৎসা সহায়তা।</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-slate-100 py-12 border-t border-b border-slate-200">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-2xl font-bold text-navy-800 flex items-center gap-2">
+                            <i class="fa-solid fa-bullhorn text-emerald-600"></i> সাম্প্রতিক নোটিশ
+                        </h3>
+                        <button onclick="switchTab('notices')" class="text-emerald-600 hover:text-emerald-700 font-semibold text-sm flex items-center gap-1">
+                            সব নোটিশ দেখুন <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                    <div id="home-notices-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="section-apply" class="tab-content hidden py-10 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+            <div class="bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden">
+                <div class="bg-navy-800 text-white p-6 sm:p-8 flex items-center justify-between">
+                    <div>
+                        <span class="text-emerald-400 font-semibold text-xs tracking-wider uppercase">ডিজিটাল সেবা পোর্টাল</span>
+                        <h2 class="text-2xl sm:text-3xl font-bold mt-1">আবেদন ফরম জমা দিন</h2>
+                        <p class="text-slate-300 text-sm mt-1">নবতরুণ সংস্থার যেকোনো অফিসিয়াল কাজের আবেদনের জন্য নিম্নোক্ত ফরমটি পূরণ করুন।</p>
+                    </div>
+                    <img src="1000115982_2.png" alt="লোগো" class="h-16 w-16 bg-white rounded-full p-1 shadow hidden sm:block" onerror="this.onerror=null; this.src='1000115982.png';">
+                </div>
+
+                <form id="application-form" onsubmit="handleApplicationSubmit(event)" class="p-6 sm:p-8 space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">আবেদনকারীর পূর্ণ নাম *</label>
+                            <input type="text" id="applicant-name" required placeholder="যেমন: মো: আব্দুর রহমান" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">মোবাইল নম্বর *</label>
+                            <input type="tel" id="applicant-phone" required placeholder="017XXXXXXXX" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">ইমেইল ঠিকানা (ঐচ্ছিক)</label>
+                            <input type="email" id="applicant-email" placeholder="example@mail.com" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">আবেদনের ধরন *</label>
+                            <select id="application-category" required class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition">
+                                <option value="">নির্বাচন করুন</option>
+                                <option value="নতুন সদস্যপদ">নতুন সদস্যপদ আবেদন</option>
+                                <option value="ত্রাণ ও আর্থিক সাহায্য">ত্রাণ ও আর্থিক সাহায্য আবেদন</option>
+                                <option value="রক্তদান নিবন্ধন">রক্তদান কর্মসূচী সহায়তা</option>
+                                <option value="ইভেন্ট ও আয়োজন">সামাজিক ইভেন্ট/আয়োজন প্রস্তাবনা</option>
+                                <option value="অন্যান্য অভিযোগ/পরামর্শ">অন্যান্য অভিযোগ/পরামর্শ</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">আবেদনের বিবরণ/বিষয়বস্তু *</label>
+                        <textarea id="application-details" rows="5" required placeholder="আপনার আবেদন সম্পর্কে বিস্তারিত লিখুন..." class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition"></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">সহায়ক ফাইল (ঐচ্ছিক)</label>
+                        <input type="file" id="application-file" accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png,.zip"
+                               class="w-full px-4 py-2.5 rounded-lg border border-slate-300 bg-white focus:ring-2 focus:ring-emerald-500 outline-none">
+                        <p class="text-xs text-slate-500 mt-1">সর্বোচ্চ ৫ MB। PDF, Word, Excel, ছবি বা ZIP ফাইল দিতে পারবেন।</p>
+                    </div>
+
+                    <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-4 text-xs text-slate-600 space-y-1">
+                        <p class="font-bold text-emerald-800 flex items-center gap-1">
+                            <i class="fa-solid fa-shield-halved"></i> অটোমেটেড ওয়ার্কফ্লো প্রক্রিয়া:
+                        </p>
+                        <p>১. আবেদন জমা হলে একটি ট্র্যাকিং নম্বর (Tracking ID) তৈরি হবে।</p>
+                        <p>২. আবেদনটি **সভাপতি (President)** এবং **সাধারণ সম্পাদক (General Secretary)** উভয় কর্মকর্তার অনুমোদনের জন্য অপেক্ষমাণ থাকবে।</p>
+                        <p>৩. উভয় অনুমোদন পাওয়ার পর তা **দপ্তর সম্পাদক (Office Secretary)** ড্যাশবোর্ডে পাঠাবে প্রকাশনার জন্য।</p>
+                    </div>
+
+                    <div class="flex justify-end">
+                        <button type="submit" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-8 py-3 rounded-xl shadow-lg hover:shadow-emerald-600/30 transition flex items-center gap-2">
+                            <i class="fa-solid fa-paper-plane"></i> আবেদন সাবমিট করুন
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+        <section id="section-track" class="tab-content hidden py-10 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+            <div class="bg-white rounded-2xl shadow-xl border border-slate-200 p-6 sm:p-8 space-y-8">
+                <div class="text-center max-w-xl mx-auto space-y-2">
+                    <div class="inline-flex p-3 bg-emerald-100 text-emerald-600 rounded-full mb-2">
+                        <i class="fa-solid fa-route text-2xl"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-navy-800">আবেদন ট্র্যাকিং সিস্টেম</h2>
+                    <p class="text-slate-600 text-sm">আপনার আবেদন ট্র্যাকিং আইডি (যেমন: NT-8X92) অথবা নাম দিয়ে বর্তমান অবস্থা ট্র্যাকিং করুন।</p>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto">
+                    <input type="text" id="track-search-input" placeholder="ট্র্যাকিং আইডি বা নাম লিখুন..." class="flex-grow px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none text-base">
+                    <button onclick="performTrackingSearch()" class="bg-navy-800 hover:bg-navy-900 text-white font-bold px-6 py-3 rounded-xl shadow transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-magnifying-glass"></i> সন্ধান করুন
+                    </button>
+                </div>
+
+                <div id="tracking-result-box" class="hidden border border-slate-200 rounded-2xl p-6 bg-slate-50 space-y-6">
+                </div>
+            </div>
+        </section>
+
+        <section id="section-notices" class="tab-content hidden py-10 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+                <div>
+                    <h2 class="text-3xl font-bold text-navy-800">অফিশিয়াল নোটিশ বোর্ড</h2>
+                    <p class="text-slate-600 text-sm mt-1">নবতরুণ সংস্থা কর্তৃক প্রকাশিত সকল স্বীকৃত স্মারক ও বিজ্ঞপ্তিসমূহ</p>
+                </div>
+                <div class="flex items-center gap-2 bg-white border border-slate-200 px-3 py-1.5 rounded-lg shadow-sm">
+                    <i class="fa-solid fa-filter text-slate-400"></i>
+                    <select id="notice-filter-category" onchange="renderNotices()" class="bg-transparent text-sm font-semibold outline-none text-slate-700">
+                        <option value="ALL">সকল ক্যাটাগরি</option>
+                        <option value="নতুন সদস্যপদ">নতুন সদস্যপদ</option>
+                        <option value="ত্রাণ ও আর্থিক সাহায্য">ত্রাণ ও আর্থিক সাহায্য</option>
+                        <option value="রক্তদান নিবন্ধন">রক্তদান নিবন্ধন</option>
+                        <option value="ইভেন্ট ও আয়োজন">ইভেন্ট ও আয়োজন</option>
+                        <option value="সাধারণ নোটিশ">সাধারণ নোটিশ</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="notices-list-container" class="space-y-6">
+            </div>
+        </section>
+
+        <section id="section-dashboard" class="tab-content hidden py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="bg-navy-800 text-white rounded-2xl p-6 shadow-xl mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-l-8 border-emerald-500">
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="bg-emerald-500 text-white text-xs font-extrabold px-2.5 py-0.5 rounded-full uppercase" id="dash-role-badge">সুপার অ্যাডমিন</span>
+                        <span class="text-xs text-slate-300" id="dash-role-title">সম্পূর্ণ এক্সেস প্রাপ্ত</span>
+                    </div>
+                    <h2 class="text-2xl font-bold mt-1" id="dash-welcome-text">স্বাগতম, অ্যাডমিন ড্যাশবোর্ড</h2>
+                </div>
+                <div class="flex items-center gap-3">
+                    <button onclick="openLoginModal()" class="bg-white/10 hover:bg-white/20 text-white border border-white/20 text-xs px-4 py-2 rounded-lg font-semibold transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-arrows-rotate"></i> রোল পরিবর্তন
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+                    <div>
+                        <p class="text-xs text-slate-500 font-semibold">মোট জমা পড়া আবেদন</p>
+                        <h3 class="text-2xl font-bold text-navy-800 mt-1" id="stat-total-apps">0</h3>
+                    </div>
+                    <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-folder-open"></i>
+                    </div>
+                </div>
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+                    <div>
+                        <p class="text-xs text-slate-500 font-semibold">অনুমোদনের অপেক্ষায় (Pres/Sec)</p>
+                        <h3 class="text-2xl font-bold text-amber-600 mt-1" id="stat-pending-apps">0</h3>
+                    </div>
+                    <div class="w-12 h-12 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+                </div>
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+                    <div>
+                        <p class="text-xs text-slate-500 font-semibold">প্রকাশনার অপেক্ষায় (Office Sec)</p>
+                        <h3 class="text-2xl font-bold text-purple-600 mt-1" id="stat-approved-apps">0</h3>
+                    </div>
+                    <div class="w-12 h-12 bg-purple-50 text-purple-600 rounded-xl flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-file-signature"></i>
+                    </div>
+                </div>
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+                    <div>
+                        <p class="text-xs text-slate-500 font-semibold">প্রকাশিত অফিসিয়াল নোটিশ</p>
+                        <h3 class="text-2xl font-bold text-emerald-600 mt-1" id="stat-published-notices">0</h3>
+                    </div>
+                    <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden mb-10">
+                <div class="px-6 py-4 border-b border-slate-200 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                    <h3 class="text-lg font-bold text-navy-800 flex items-center gap-2">
+                        <i class="fa-solid fa-list-check text-emerald-600"></i> আবেদনসমূহ ও অনুমোদন প্রবাহ (Approval Workflow)
+                    </h3>
+                    <div class="flex items-center gap-2">
+                        <button onclick="resetDemoData()" class="text-xs bg-red-50 text-red-600 hover:bg-red-100 px-3 py-1.5 rounded-lg border border-red-200 font-semibold transition">
+                            <i class="fa-solid fa-rotate-left"></i> ডাটা রিসেট করুন
+                        </button>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-right sm:text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-50 text-slate-600 text-xs uppercase font-bold border-b border-slate-200">
+                                <th class="py-3 px-4">আইডি/তারিখ</th>
+                                <th class="py-3 px-4">আবেদনকারীর তথ্য</th>
+                                <th class="py-3 px-4">বিষয়/ক্যাটাগরি</th>
+                                <th class="py-3 px-4 text-center">সভাপতি এর মতামত</th>
+                                <th class="py-3 px-4 text-center">সাধারণ সম্পাদক এর মতামত</th>
+                                <th class="py-3 px-4 text-center">দপ্তর সম্পাদক (প্রকাশনা)</th>
+                                <th class="py-3 px-4 text-center">অ্যাকশন</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-table-body" class="divide-y divide-slate-100 text-sm">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-navy-900 text-white border-t-4 border-emerald-500 pt-12 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3 space-x-reverse">
+                        <img src="1000115982_2.png" alt="লোগো" class="h-12 w-12 bg-white rounded-full p-0.5" onerror="this.onerror=null; this.src='1000115982.png';">
+                        <span class="text-xl font-bold text-white">নবতরুণ সংস্থা</span>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        নবতরুণ সংস্থা একটি অরাজনৈতিক, অলাভজনক সামাজিক উন্নয়নমূলক সংস্থা। আমরা সমাজে স্থায়ী ইতিবাচক পরিবর্তন আনতে প্রতিশ্রুতিবদ্ধ।
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-sm font-bold text-emerald-400 uppercase tracking-wider mb-3">দ্রুত লিঙ্ক</h4>
+                    <ul class="space-y-2 text-xs text-slate-300">
+                        <li><a href="#" onclick="switchTab('home')" class="hover:text-emerald-400">প্রধান পাতা</a></li>
+                        <li><a href="#" onclick="switchTab('apply')" class="hover:text-emerald-400">আবেদন করুন</a></li>
+                        <li><a href="#" onclick="switchTab('track')" class="hover:text-emerald-400">ট্র্যাকিং করুন</a></li>
+                        <li><a href="#" onclick="switchTab('notices')" class="hover:text-emerald-400">নোটিশ বোর্ড</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-sm font-bold text-emerald-400 uppercase tracking-wider mb-3">যোগাযোগ</h4>
+                    <ul class="space-y-2 text-xs text-slate-300">
+                        <li><i class="fa-solid fa-location-dot text-emerald-500 ml-2"></i> কেন্দ্রীয় কার্যালয়, ঢাকা, বাংলাদেশ</li>
+                        <li><i class="fa-solid fa-envelope text-emerald-500 ml-2"></i> nabataranasangstha@gmail.com</li>
+                        <li><i class="fa-solid fa-phone text-emerald-500 ml-2"></i> +৮৮০ ১৭০০ ০০০ ০০০</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-sm font-bold text-emerald-400 uppercase tracking-wider mb-3">সামাজিক যোগাযোগ</h4>
+                    <div class="flex space-x-3 space-x-reverse text-slate-300">
+                        <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-emerald-500 transition"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-emerald-500 transition"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-emerald-500 transition"><i class="fa-brands fa-x-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-slate-800 pt-6 text-center text-xs text-slate-400">
+                <p>&copy; 2026 নবতরুণ সংস্থা। সর্বস্বত্ব সংরক্ষিত।</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const sections = document.querySelectorAll('.tab-content');
+        const navButtons = document.querySelectorAll('.nav-btn');
+
+        function switchTab(tabName) {
+            sections.forEach(section => {
+                section.classList.add('hidden');
+            });
+
+            const target = document.getElementById('section-' + tabName);
+            if (target) {
+                target.classList.remove('hidden');
+            }
+
+            navButtons.forEach(button => {
+                const id = button.id.replace('nav-', '');
+                button.classList.toggle('text-emerald-600', id === tabName);
+                button.classList.toggle('font-bold', id === tabName);
+            });
+        }
+
+        function openLoginModal() {
+            const name = prompt('আপনার নাম লিখুন:', 'দর্শনার্থী');
+            if (name && name.trim()) {
+                document.getElementById('current-user-name').textContent = name.trim();
+                document.getElementById('user-badge').classList.remove('hidden');
+                document.getElementById('login-btn-text').textContent = 'প্রোফাইল';
+                const role = name.trim().toLowerCase().includes('admin') ? 'সুপার অ্যাডমিন' : 'দর্শনার্থী';
+                document.getElementById('dash-role-badge').textContent = role;
+            }
+        }
+
+        function handleApplicationSubmit(event) {
+            event.preventDefault();
+            const applicantName = document.getElementById('applicant-name').value.trim();
+            const category = document.getElementById('application-category').value;
+            const trackingId = 'NT-' + Math.random().toString(36).slice(2, 8).toUpperCase();
+            alert(`আবেদন সফলভাবে জমা হয়েছে!\nট্র্যাকিং আইডি: ${trackingId}\nআবেদনকারী: ${applicantName}\nক্যাটাগরি: ${category}`);
+            document.getElementById('application-form').reset();
+        }
+
+        function performTrackingSearch() {
+            const value = document.getElementById('track-search-input').value.trim();
+            const resultBox = document.getElementById('tracking-result-box');
+            if (!value) {
+                resultBox.classList.remove('hidden');
+                resultBox.innerHTML = '<p class="text-red-600 font-semibold">অনুগ্রহ করে ট্র্যাকিং আইডি বা নাম লিখুন।</p>';
+                return;
+            }
+
+            const trackingId = 'NT-' + Math.random().toString(36).slice(2, 8).toUpperCase();
+            resultBox.classList.remove('hidden');
+            resultBox.innerHTML = `
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-lg">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs uppercase text-slate-500">ট্র্যাকিং রেজাল্ট</p>
+                        <h3 class="text-2xl font-bold text-navy-800">${trackingId}</h3>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                    <div class="bg-white p-4 rounded-xl border border-slate-200">
+                        <p class="text-slate-500">আবেদনকারীর নাম</p>
+                        <p class="font-bold text-navy-800">${value}</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-slate-200">
+                        <p class="text-slate-500">স্ট্যাটাস</p>
+                        <p class="font-bold text-amber-600">অনুমোদনের অপেক্ষায়</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-slate-200">
+                        <p class="text-slate-500">শেষ আপডেট</p>
+                        <p class="font-bold text-navy-800">আজ</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderNotices() {
+            const category = document.getElementById('notice-filter-category').value;
+            const notices = [
+                { title: 'স্বেচ্ছাসেবক নিবন্ধন বিজ্ঞপ্তি', category: 'নতুন সদস্যপদ', date: '১৫ অক্টোবর ২০২৬', text: 'স্বেচ্ছাসেবক ও উন্নয়ন কর্মীর জন্য নিবন্ধন চলমান।' },
+                { title: 'দুর্যোগ ত্রাণ প্রদান', category: 'ত্রাণ ও আর্থিক সাহায্য', date: '১২ অক্টোবর ২০২৬', text: 'বন্যা-আক্রান্ত এলাকায় জরুরি ত্রাণ বিতরণের বিজ্ঞপ্তি প্রকাশিত হয়েছে।' },
+                { title: 'রক্তদান শিবির', category: 'রক্তদান নিবন্ধন', date: '১০ অক্টোবর ২০২৬', text: 'সামাজিক বনভোজ ও রক্তদান শিবিরে অংশগ্রহণের আহ্বান।' },
+                { title: 'সামাজিক অনুষ্ঠান', category: 'ইভেন্ট ও আয়োজন', date: '৮ অক্টোবর ২০২৬', text: 'বিনোদন ও সামাজিক সচেতনতা সমন্বিত অনুষ্ঠানের আয়োজন।' },
+                { title: 'সাধারণ নোটিশ', category: 'সাধারণ নোটিশ', date: '৫ অক্টোবর ২০২৬', text: 'অফিসিয়াল নোটিশ বোর্ডের সর্বশেষ আপডেট সম্পর্কে অবগত করুন।' }
+            ];
+
+            const filtered = category === 'ALL' ? notices : notices.filter(item => item.category === category);
+            const container = document.getElementById('notices-list-container');
+            container.innerHTML = filtered.map(notice => `
+                <article class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                        <div>
+                            <p class="text-xs uppercase tracking-wider text-emerald-600 font-bold">${notice.category}</p>
+                            <h3 class="text-xl font-bold text-navy-800 mt-1">${notice.title}</h3>
+                        </div>
+                        <span class="text-xs bg-slate-100 text-slate-600 px-2.5 py-1 rounded-full">${notice.date}</span>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed">${notice.text}</p>
+                </article>
+            `).join('') || '<p class="text-slate-500">কোনো নোটিশ পাওয়া যায়নি।</p>';
+        }
+
+        function resetDemoData() {
+            alert('ডেমো ডাটা রিসেট করা হয়েছে।');
+            switchTab('home');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            switchTab('home');
+            renderNotices();
+
+            const homeNotices = document.getElementById('home-notices-container');
+            const notices = [
+                { title: 'স্বেচ্ছাসেবক নিবন্ধন বিজ্ঞপ্তি', category: 'নতুন সদস্যপদ', date: '১৫ অক্টোবর ২০২৬' },
+                { title: 'দুর্যোগ ত্রাণ প্রদান', category: 'ত্রাণ ও আর্থিক সাহায্য', date: '১২ অক্টোবর ২০২৬' },
+                { title: 'রক্তদান শিবির', category: 'রক্তদান নিবন্ধন', date: '১০ অক্টোবর ২০২৬' },
+                { title: 'সামাজিক অনুষ্ঠান', category: 'ইভেন্ট ও আয়োজন', date: '৮ অক্টোবর ২০২৬' }
+            ];
+
+            homeNotices.innerHTML = notices.map(notice => `
+                <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-md transition">
+                    <div class="flex items-center justify-between gap-2 mb-2">
+                        <span class="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2 py-1 rounded-full">${notice.category}</span>
+                        <span class="text-[11px] text-slate-500">${notice.date}</span>
+                    </div>
+                    <h4 class="font-bold text-navy-800">${notice.title}</h4>
+                </div>
+            `).join('');
+        });
+    </script>
+</body>
+</html>
